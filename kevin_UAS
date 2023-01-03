@@ -1,0 +1,81 @@
+import datetime
+x = datetime.datetime.now()
+print("\n============ TOKO KOPI JAYA ==============\n")
+pembeli = input("nama Pembeli: ")
+harga = []
+barang = []
+total = 0
+total_harga1 = 0
+total_harga2 = 0
+total_harga3 = 0
+nomor = 0
+jumlah = 0
+
+while True:    
+    print("\n================== Menu ==================\n")
+    print("1. Americano\t - Rp 10000")
+    print("2. Espresso\t - Rp 8000")
+    print("3. Coffee latte\t - Rp 13000\n") 
+    try:
+        nomor = int(input("Masukkan Pilihan : "))
+        jumlah = int(input("Mau Berapa Gelas ? "))
+    except ValueError:
+        print("\nMasukkan Perintah Dengan Benar")
+        continue
+    if nomor == 1:
+        barang.append("Americano ")
+        harga.append(10000)
+        total_harga1 = jumlah * 10000
+    elif nomor == 2:
+        barang.append("Espresso ")
+        harga.append(8000)
+        total_harga2 = jumlah * 8000
+    elif nomor == 3:
+        barang.append("Coffee Latte ")
+        harga.append(13000)
+        total_harga3 = jumlah * 13000  
+    else:
+        print("\nPilihan tidak ada!!")
+    
+    beli_barang_lain = input("Beli barang lain ?\nTekan (y/t) : ")
+    if beli_barang_lain == "y" :
+        print("")
+        continue
+    elif beli_barang_lain == "t" :
+        break
+    else:
+        print("masukkan pilihan dengan benar")
+         
+total = total_harga1 + total_harga2 + total_harga3
+print(f"Barang :  ", "".join(str(a) for a in barang))
+print("harga  :  ", "".join(str(b) for b in harga))
+
+print("Jumlah total harga : Rp.", total)
+
+while True:
+    try:    
+        uang = int(input("Uang Tunai Pembeli: Rp "))
+        tagihan = int(total + (total * 0.10))
+    except ValueError:
+        print("\nMasukkan Perintah Dengan Benar\n")
+        continue
+    else:
+        break
+if uang >= tagihan:
+    print("\n\n============ STRUK PEMBELIAN =============")
+    print(x.strftime("%d-%B-%Y  %X"))
+    print("\nNama\t\t :", pembeli)
+    print("==========================================")
+    print(f"Pesanan\t\t: {jumlah} {barang}")
+    print("Total harga\t: Rp.", total)
+    print("PPN 10%\t\t: Rp", int(total * 0.10))
+    print("Tagihan\t\t: Rp", tagihan)
+    print("Dibayar\t\t: Rp", uang)
+    print("Kembalian\t: Rp", int(uang - tagihan))
+    print("==========================================")
+    print("       Terimakasih Sudah Berkunjung \n    ")
+    print("            Selamat Menikmati             ")
+    print("==========================================")
+
+else :
+    print("\nUang yang anda bayarkan kurang :Rp.",uang - tagihan)
